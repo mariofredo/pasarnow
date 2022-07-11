@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
+const search = require("../routes/search");
 const user = require("../routes/users");
-
+const errHandler = require("../middlewares/errHandlers");
 router.use("/users", user);
-router.use("/search");
-router.use("/readinglist");
+router.use("/search", search);
+// router.use("/readinglist");
 router.use(errHandler);
 module.exports = router;

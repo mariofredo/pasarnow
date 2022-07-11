@@ -5,3 +5,5 @@ function errHandler(err, req, res, next) {
     message: msg,
   });
 }
+
+module.exports = errHandler
