@@ -8,7 +8,6 @@ function Result() {
   const { data } = useSelector((state) => state.search);
   const isLoading = useSelector((state) => state.isLoading);
   const dispatch = useDispatch();
-  // console.log(data);
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -22,8 +21,8 @@ function Result() {
   return (
     <div className="container-fluid">
       <div>
-        {data.map((el) => {
-          return <Card data={el} />;
+        {data.map((el, i) => {
+          return <Card key={i} data={el} />;
         })}
       </div>
     </div>

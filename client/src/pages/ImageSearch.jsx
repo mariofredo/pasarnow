@@ -1,10 +1,10 @@
-import googleText from "../assets/google-text.png";
+import googleText from "../assets/google-images.png";
 import Form from "react-bootstrap/Form";
 import "./Home.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Home() {
+function ImageSearch() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   function onChangeHandler(e) {
@@ -14,17 +14,21 @@ function Home() {
     e.preventDefault();
     let temp = search.split(" ").join("+");
 
-    navigate(`/result?q=${temp}`);
+    navigate(`/resultImages?q=${temp}`);
   }
   return (
     <div className="container-fluid">
       <div className="home_container">
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <img src={googleText} alt="logo" className="home_google" />
+          <img
+            src={googleText}
+            alt="logo"
+            className="home_google_images mt-5"
+          />
         </div>
         <Form
           style={{
-            marginTop: "-100px",
+            marginTop: "10px",
             marginRight: "auto",
             marginLeft: "auto",
             width: "50%",
@@ -43,4 +47,4 @@ function Home() {
     </div>
   );
 }
-export default Home;
+export default ImageSearch;

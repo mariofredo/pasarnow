@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useDispatch } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { getSearch } from "../stores/action";
+import { getImage, getSearch } from "../stores/action";
 import "./Navbar.css";
 function NavbarPage() {
   let activeStyle = {
@@ -25,6 +25,9 @@ function NavbarPage() {
     if (location.pathname === "/result") {
       dispatch(getSearch(temp));
       navigate(`/result?q=${temp}`);
+    } else if (location.pathname === "/resultImages") {
+      dispatch(getImage(temp));
+      navigate(`/resultImages?q=${temp}`);
     }
   }
   return (
@@ -38,7 +41,8 @@ function NavbarPage() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            {location.pathname !== "/" && (
+            {(location.pathname === "/result" ||
+              location.pathname === "/resultImages") && (
               <div
                 className="d-flex justify-content-center mx-auto"
                 style={{ width: "100%" }}
