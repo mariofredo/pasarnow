@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:5050";
+const baseUrl = "https://pasarnow.herokuapp.com";
 export function fetchSearchSuccess(payload) {
   return { type: "getSearch", payload };
 }
@@ -127,7 +127,6 @@ export const postReadingList = (link, title) => {
 };
 export const deleteReadingList = (id) => {
   return (dispatch, getState) => {
-    console.log(id);
     axios({
       method: "DELETE",
       url: `${baseUrl}/readinglist/${id}`,
