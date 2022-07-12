@@ -1,0 +1,20 @@
+.card_container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card_item {
+  width: 80%;
+}
+
+.card_link :hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.card_title {
+  color: blue;
+  font-size: x-large;
+}

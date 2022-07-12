@@ -1,11 +1,19 @@
 import { Routes, Route } from "react-router-dom";
-
+import NavbarPage from "./components/Navbar";
 import Home from "./pages/Home";
+import Result from "./pages/Result";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ResultImages from "./pages/ResultImages";
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <>
+      <NavbarPage />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/result" element={<Result />} />
+        <Route path="/resultImages" element={<ResultImages />} />
+      </Routes>
+    </>
   );
 }
 

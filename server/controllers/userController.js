@@ -12,7 +12,7 @@ class UserController {
         password: hashSync(password, 10),
       });
       delete user.password;
-      res.status(200).json({
+      res.status(201).json({
         message: "Register success",
       });
     } catch (err) {
@@ -38,7 +38,11 @@ class UserController {
         userId: user.id,
         userEmail: user.email,
       };
-      const access_token = sign();
+      const access_token = sign(payload, process.env.SECRET_KEY);
+
+      res.status(200).json({
+        access_token,
+      });
     } catch (err) {
       next(err);
     }

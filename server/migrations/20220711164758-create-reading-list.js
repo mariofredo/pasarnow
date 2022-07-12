@@ -15,8 +15,11 @@ module.exports = {
           key: "id",
         },
       },
-      searchId: {
-        type: Sequelize.INTEGER,
+      link: {
+        type: Sequelize.STRING,
+      },
+      title: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
