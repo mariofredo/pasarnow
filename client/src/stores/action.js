@@ -9,6 +9,9 @@ export function fetchImagesSuccess(payload) {
 export function fetchNewsSuccess(payload) {
   return { type: "getNews", payload };
 }
+export function fetchRLSuccess(payload) {
+  return { type: "getReadingLists", payload };
+}
 export function loadingSearch(payload) {
   return { type: "loading", payload };
 }
@@ -69,8 +72,32 @@ export const getNews = (input) => {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         dispatch(fetchNewsSuccess(response.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally((_) => {
+        setTimeout(() => {
+          dispatch(loadingSearch(false));
+        }, 2000);
+      });
+  };
+};
+
+export const getReadingLists = () => {
+  return (dispatch, getState) => {
+    dispatch(loadingSearch(true));
+    axios({
+      method: "GET",
+      url: `${baseUrl}/readinglist`,
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    })
+      .then((response) => {
+        dispatch(fetchRLSuccess(response.data));
       })
       .catch((err) => {
         console.log(err);
@@ -96,6 +123,24 @@ export const postReadingList = (link, title) => {
         title,
       },
     });
+  };
+};
+export const deleteReadingList = (id) => {
+  return (dispatch, getState) => {
+    console.log(id);
+    axios({
+      method: "DELETE",
+      url: `${baseUrl}/readinglist/${id}`,
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    })
+      .then((_) => {
+        dispatch(getReadingLists());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 };
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getNews } from "../stores/action";
 import CardNews from "../components/CardNews";
+import Loader from "../components/Loader";
 function ResultNews() {
   const { data } = useSelector((state) => state.news);
   const isLoading = useSelector((state) => state.isLoading);
@@ -15,7 +16,7 @@ function ResultNews() {
     dispatch(getNews(query.get("q")));
   }, []);
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
   return (
     <div className="container-fluid">

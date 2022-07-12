@@ -1,33 +1,26 @@
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { postReadingList } from "../stores/action";
+import { deleteReadingList, postReadingList } from "../stores/action";
 import moment from "moment";
 import "./Card.css";
-function CardNews({ data }) {
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+function CardNews({ data, page }) {
   const dispatch = useDispatch();
+  const MySwal = withReactContent(Swal);
   async function addReadingList(link, title) {
     try {
       await dispatch(postReadingList(link, title));
     } catch (err) {
       console.log(err);
+      MySwal.fire({
+        title: <p>{err.response.data.message}</p>,
+      });
     }
   }
-  // function formattedDate(published) {
-  //   let date = moment(published, "DD.MM.YYYY HH:mm", true),
-  //     now = moment(),
-  //     days = now.diff(date, "days"),
-  //     weeks = now.diff(date, "weeks"),
-  //     result = "";
-
-  //   if (weeks) {
-  //     result += weeks + (weeks === 1 ? " week " : " weeks ");
-  //     days = days % 7;
-  //   } else if (days || weeks === 0) {
-  //     result += days + (days === 1 ? " day" : " days");
-  //   }
-  //   console.log(result);
-  //   return result;
-  // }
+  function handleDeleteReadingList(id) {
+    dispatch(deleteReadingList(id));
+  }
   console.log(data);
   return (
     <div>
@@ -43,16 +36,26 @@ function CardNews({ data }) {
                 <p className="card_title">{data.title}</p>
               </a>
               <div style={{ marginTop: "-20px" }}>
-                {moment(data.published).fromNow()}
+                {page !== "ReadingLists" && moment(data.published).fromNow()}
               </div>
             </div>
             <div className="ms-auto d-flex align-items-center">
-              <Button
-                onClick={() => addReadingList(data.link, data.title)}
-                variant="light"
-              >
-                Add Readinglist
-              </Button>
+              {page !== "ReadingLists" && (
+                <Button
+                  onClick={() => addReadingList(data.link, data.title)}
+                  variant="light"
+                >
+                  Add Readinglist
+                </Button>
+              )}
+              {page === "ReadingLists" && (
+                <Button
+                  onClick={() => handleDeleteReadingList(data.id)}
+                  variant="danger"
+                >
+                  Delete Readinglist
+                </Button>
+              )}
             </div>
           </div>
         </div>

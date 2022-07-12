@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Main from "./pages/Main";
 import RequireAuth from "./components/RequireAuth";
 import IsLogin from "./components/IsLogin";
+import ReadingList from "./pages/ReadingList";
 function App() {
   return (
     <>
@@ -29,6 +30,7 @@ function App() {
           <Route path="/result" element={<Result />} />
           <Route path="/resultImages" element={<ResultImages />} />
           <Route path="/resultNews" element={<ResultNews />} />
+          <Route path="/readinglists" element={<ReadingList />} />
         </Route>
         <Route
           path="/login"

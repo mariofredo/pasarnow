@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import CardImage from "../components/CardImage";
 import { getImage } from "../stores/action";
-
+import Loader from "../components/Loader";
 function ResultImages() {
   const { data } = useSelector((state) => state.images);
   const isLoading = useSelector((state) => state.isLoading);
@@ -16,9 +16,9 @@ function ResultImages() {
     dispatch(getImage(query.get("q")));
   }, []);
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
-  console.log(data);
+
   return (
     <div className="container-fluid">
       <div className="row">

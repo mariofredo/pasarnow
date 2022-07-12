@@ -1,17 +1,17 @@
 import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import Swal from "sweetalert2";
-// import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import { useDispatch } from "react-redux";
-import googleText from "../assets/google-text.png";
+import googleText from "../assets/google-logo-9824.png";
 import { postLogin } from "../stores/action";
 
 function Login() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const MySwal = withReactContent(Swal);
+  const MySwal = withReactContent(Swal);
   const dispatch = useDispatch();
   async function handlePostLogin(e) {
     try {
@@ -21,7 +21,9 @@ function Login() {
       localStorage.setItem("access_token", data.access_token);
       navigate("/");
     } catch (err) {
-      console.log(err);
+      MySwal.fire({
+        title: <p>{err.response.data.message}</p>,
+      });
     }
   }
   function localEmail(e) {

@@ -5,6 +5,7 @@ const initial = {
   search: [],
   images: [],
   news: [],
+  readingLists: [],
   isLoading: true,
 };
 
@@ -16,6 +17,8 @@ function reducer(state = initial, action) {
       return { ...state, images: action.payload };
     case "getNews":
       return { ...state, news: action.payload };
+    case "getReadingLists":
+      return { ...state, readingLists: action.payload };
     case "loading":
       return { ...state, isLoading: action.payload };
     default:

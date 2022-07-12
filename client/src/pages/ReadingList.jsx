@@ -1,29 +1,25 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import Card from "../components/Card";
-import { getSearch } from "../stores/action";
+import CardNews from "../components/CardNews";
+import { getReadingLists } from "../stores/action";
 import Loader from "../components/Loader";
-function Result() {
-  const { data } = useSelector((state) => state.search);
+function ReadingList() {
+  const data = useSelector((state) => state.readingLists);
   const isLoading = useSelector((state) => state.isLoading);
   const dispatch = useDispatch();
-  function useQuery() {
-    return new URLSearchParams(useLocation().search);
-  }
-  const query = useQuery();
   useEffect(() => {
-    dispatch(getSearch(query.get("q")));
+    dispatch(getReadingLists());
   }, []);
   if (isLoading) {
     return <Loader />;
   }
+  console.log(data);
   return (
     <div className="container-fluid">
       <div>
         {data ? (
           data.map((el, i) => {
-            return <Card key={i} data={el} />;
+            return <CardNews page={"ReadingLists"} key={i} data={el} />;
           })
         ) : (
           <p>Empty</p>
@@ -33,4 +29,4 @@ function Result() {
   );
 }
 
-export default Result;
+export default ReadingList;
