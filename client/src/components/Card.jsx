@@ -1,7 +1,6 @@
 import "./Card.css";
 
 function Card({ data }) {
-  console.log(data);
   return (
     <div className="card_container">
       <div className="card_item">

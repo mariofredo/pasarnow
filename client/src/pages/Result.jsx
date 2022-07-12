@@ -21,9 +21,13 @@ function Result() {
   return (
     <div className="container-fluid">
       <div>
-        {data.map((el, i) => {
-          return <Card key={i} data={el} />;
-        })}
+        {data ? (
+          data.map((el, i) => {
+            return <Card key={i} data={el} />;
+          })
+        ) : (
+          <p>Empty</p>
+        )}
       </div>
     </div>
   );

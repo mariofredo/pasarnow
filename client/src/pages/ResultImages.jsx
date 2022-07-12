@@ -5,7 +5,7 @@ import CardImage from "../components/CardImage";
 import { getImage } from "../stores/action";
 
 function ResultImages() {
-  const { data } = useSelector((state) => state.search);
+  const { data } = useSelector((state) => state.images);
   const isLoading = useSelector((state) => state.isLoading);
   const dispatch = useDispatch();
   function useQuery() {
@@ -22,9 +22,13 @@ function ResultImages() {
   return (
     <div className="container-fluid">
       <div className="row">
-        {data.map((el, i) => {
-          return <CardImage key={i} data={el} />;
-        })}
+        {data ? (
+          data.map((el, i) => {
+            return <CardImage key={i} data={el} />;
+          })
+        ) : (
+          <p>Empty</p>
+        )}
       </div>
     </div>
   );

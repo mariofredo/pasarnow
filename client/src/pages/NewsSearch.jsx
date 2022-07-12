@@ -14,7 +14,7 @@ function NewsSearch() {
     e.preventDefault();
     let temp = search.split(" ").join("+");
 
-    navigate(`/resultImages?q=${temp}`);
+    navigate(`/resultNews?q=${temp}`);
   }
   return (
     <div className="container-fluid">

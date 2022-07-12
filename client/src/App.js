@@ -6,16 +6,38 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ResultImages from "./pages/ResultImages";
 import ImageSearch from "./pages/ImageSearch";
 import NewsSearch from "./pages/NewsSearch";
+import ResultNews from "./pages/ResultNews";
+import Login from "./pages/Login";
+import Main from "./pages/Main";
+import RequireAuth from "./components/RequireAuth";
+import IsLogin from "./components/IsLogin";
 function App() {
   return (
     <>
-      <NavbarPage />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/images" element={<ImageSearch />} />
-        <Route path="/news" element={<NewsSearch />} />
-        <Route path="/result" element={<Result />} />
-        <Route path="/resultImages" element={<ResultImages />} />
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Main />
+            </RequireAuth>
+          }
+        >
+          <Route path="/" element={<Home />} />
+          <Route path="/images" element={<ImageSearch />} />
+          <Route path="/news" element={<NewsSearch />} />
+          <Route path="/result" element={<Result />} />
+          <Route path="/resultImages" element={<ResultImages />} />
+          <Route path="/resultNews" element={<ResultNews />} />
+        </Route>
+        <Route
+          path="/login"
+          element={
+            <IsLogin>
+              <Login />
+            </IsLogin>
+          }
+        ></Route>
       </Routes>
     </>
   );

@@ -3,6 +3,8 @@ import thunk from "redux-thunk";
 
 const initial = {
   search: [],
+  images: [],
+  news: [],
   isLoading: true,
 };
 
@@ -10,6 +12,10 @@ function reducer(state = initial, action) {
   switch (action.type) {
     case "getSearch":
       return { ...state, search: action.payload };
+    case "getImages":
+      return { ...state, images: action.payload };
+    case "getNews":
+      return { ...state, news: action.payload };
     case "loading":
       return { ...state, isLoading: action.payload };
     default:
