@@ -37,6 +37,19 @@ class ReadingListController {
       next(err);
     }
   }
+  static async deleteReadingList(req, res, next) {
+    try {
+      const { id } = req.params;
+      const rl = await ReadingList.destroy({
+        where: {
+          id,
+        },
+      });
+      res.status(200).json({ message: "Readinglist deleted successfully" });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = ReadingListController;

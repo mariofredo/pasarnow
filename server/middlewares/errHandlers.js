@@ -10,7 +10,7 @@ function errHandler(err, req, res, next) {
   ) {
     code = 401;
     msg = "Token Unauthenticated";
-  } else if (err.name === "already_have") {
+  } else if (err.message === "already_have") {
     code = 409;
     msg = "Already exist";
   }
