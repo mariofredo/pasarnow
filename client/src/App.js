@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Routes, Route } from "react-router-dom";
+import NavbarPage from "./components/Navbar";
+import Home from "./pages/Home";
+import Result from "./pages/Result";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ResultImages from "./pages/ResultImages";
+import ImageSearch from "./pages/ImageSearch";
+import NewsSearch from "./pages/NewsSearch";
+import ResultNews from "./pages/ResultNews";
+import Login from "./pages/Login";
+import Main from "./pages/Main";
+import RequireAuth from "./components/RequireAuth";
+import IsLogin from "./components/IsLogin";
+import ReadingList from "./pages/ReadingList";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Main />
+            </RequireAuth>
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Route path="/" element={<Home />} />
+          <Route path="/images" element={<ImageSearch />} />
+          <Route path="/news" element={<NewsSearch />} />
+          <Route path="/result" element={<Result />} />
+          <Route path="/resultImages" element={<ResultImages />} />
+          <Route path="/resultNews" element={<ResultNews />} />
+          <Route path="/readinglists" element={<ReadingList />} />
+        </Route>
+        <Route
+          path="/login"
+          element={
+            <IsLogin>
+              <Login />
+            </IsLogin>
+          }
+        ></Route>
+      </Routes>
+    </>
   );
 }
 

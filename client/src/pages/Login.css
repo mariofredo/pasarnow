@@ -1,0 +1,26 @@
+.row-login {
+  height: 100vh;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 22px;
+}
+.logo {
+  height: 100px;
+  width: 100px;
+}
+.card-body {
+  border-radius: 22px;
+  box-shadow: 12px 12px 20px;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+}
