@@ -13,6 +13,12 @@ function errHandler(err, req, res, next) {
   } else if (err.message === "already_have") {
     code = 409;
     msg = "Already exist";
+  } else if (err.name === "SequelizeValidationError") {
+    code = 400;
+    msg = err.errors[0].message;
+  } else if (err.name === "SequelizeUniqueConstraintError") {
+    code = 400;
+    msg = err.errors[0].message;
   }
   res.status(code).json({
     message: msg,
