@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node bin/www.js"
+    "start": "node bin/www.js",
+    "test": "npx jest"
   },
   "dependencies": {
     "axios": "^0.27.2",
