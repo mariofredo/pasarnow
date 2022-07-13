@@ -18,7 +18,7 @@ class ReadingListController {
         title,
       });
       res.status(201).json({
-        newReadinglist,
+        message: "Readinglist created successfully",
       });
     } catch (err) {
       next(err);

@@ -1,4 +1,4 @@
-const { hashSync, compareSync } = require("bcryptjs");
+const { compareSync } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 const { User } = require("../models");
 
@@ -9,13 +9,14 @@ class UserController {
       const user = await User.create({
         username,
         email,
-        password: hashSync(password, 10),
+        password,
       });
       delete user.password;
       res.status(201).json({
         message: "Register success",
       });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
